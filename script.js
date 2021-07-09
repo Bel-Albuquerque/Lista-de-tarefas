@@ -28,3 +28,9 @@ function createLiTarefa(event) {
 }
 
 buttonInput.addEventListener('click',createLiTarefa)
+
+function mudarCorLis(event){
+event.target.style.backgroundColor ='rgb(128, 128, 128)'
+}
+let ol = document.querySelector('#lista-tarefas')
+ol.addEventListener('click', mudarCorLis)
