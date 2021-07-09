@@ -44,3 +44,22 @@ function riscarTarefa (event) {
   event.target.classList.toggle('completed')
 }
 ol.addEventListener('dblclick', riscarTarefa)
+
+function clearButton(textButton){
+  let buttonPai =document.querySelector('#clearButton')
+  let clearButton = document.createElement('button')
+  let idButton = 'remover-finalizados'
+  clearButton.id = idButton
+  clearButton.innerHTML = textButton
+  buttonPai.appendChild(clearButton)
+}
+
+clearButton("Apagar Lista")
+
+
+function apagaLista () {
+  ol.innerHTML=''
+}
+
+let buttonApagar = document.querySelector('#remover-finalizados')
+buttonApagar.addEventListener('click', apagaLista)
