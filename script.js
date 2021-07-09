@@ -39,3 +39,8 @@ function mudarCorLis(event){
 
 let ol = document.querySelector('#lista-tarefas')
 ol.addEventListener('click', mudarCorLis)
+
+function riscarTarefa (event) {
+  event.target.classList.toggle('completed')
+}
+ol.addEventListener('dblclick', riscarTarefa)

@@ -2,3 +2,6 @@ body {
   background-color: #aaaaaa
 }
 
+.completed {
+  text-decoration: line-through;
+}
