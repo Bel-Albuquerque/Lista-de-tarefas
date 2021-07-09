@@ -48,7 +48,7 @@ ol.addEventListener('dblclick', riscarTarefa)
 function clearButton(textButton){
   let buttonPai =document.querySelector('#clearButton')
   let clearButton = document.createElement('button')
-  let idButton = 'remover-finalizados'
+  let idButton = 'apaga-tudo'
   clearButton.id = idButton
   clearButton.innerHTML = textButton
   buttonPai.appendChild(clearButton)
@@ -61,5 +61,28 @@ function apagaLista () {
   ol.innerHTML=''
 }
 
-let buttonApagar = document.querySelector('#remover-finalizados')
+let buttonApagar = document.querySelector('#apaga-tudo')
 buttonApagar.addEventListener('click', apagaLista)
+
+
+function apagaCompletedButton(textButton){
+  let buttonPai =document.querySelector('#clearButton')
+  let apagaCompletedButton = document.createElement('button')
+  let idButton = 'remover-finalizados'
+  apagaCompletedButton.id = idButton
+  apagaCompletedButton.innerHTML = textButton
+  buttonPai.appendChild(apagaCompletedButton)
+}
+
+apagaCompletedButton('Remover finalizados')
+
+
+function apagaCompteted(){
+  let completed = document.querySelectorAll('.completed')
+  for (index of completed){
+    index.parentNode.removeChild(index)
+  }
+}
+
+let removerFinalizados = document.querySelector('#remover-finalizados')
+removerFinalizados.addEventListener('click', apagaCompteted)
