@@ -217,3 +217,22 @@ function moverParaBaixo() {
 
 let b =document.querySelector('#mover-baixo')
 b.addEventListener('click', moverParaBaixo)
+
+function buttonClearSelected(textButton){
+  let buttonPai =document.querySelector('#clearButton')
+  let apagarSelecionado = document.createElement('button')
+  let idButton = "remover-selecionado"
+  apagarSelecionado.id = idButton
+  apagarSelecionado.innerHTML = textButton
+  buttonPai.appendChild(apagarSelecionado)
+}
+
+buttonClearSelected('Apagar Selecionado')
+
+function clearSelected(event) {
+  let select = document.querySelector('.selectFundo')
+  select.parentNode.removeChild(index)
+  ol.style.backgroundColor = '#aaaaaa'
+}
+let buttonSelectClear =document.querySelector('#remover-selecionado')
+buttonSelectClear.addEventListener('click', clearSelected)
