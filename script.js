@@ -29,15 +29,32 @@ function createLiTarefa(event) {
 
 buttonInput.addEventListener('click',createLiTarefa)
 
-function mudarCorLis(event){
-  let lis= document.querySelectorAll('li')
-  for (let index of lis) {
-    index.style.backgroundColor = '#aaaaaa'
+function selectSelectFundo(event){
+  let lista = document.querySelectorAll('li')
+  for (index of lista) {
+    if (index.classList.contains('selectFundo') ==true) {
+      index.classList.remove('selectFundo')
+    }
   }
-  event.target.style.backgroundColor ='#808080'
+  event.target.classList.add('selectFundo')
 }
 
 let ol = document.querySelector('#lista-tarefas')
+ol.addEventListener('click', selectSelectFundo)
+
+function mudarCorLis(){
+  let colorSelectFundo = document.querySelectorAll('.selectFundo')
+  let lista = document.querySelectorAll('li')
+  for (index of lista) {
+    if ( index.classList.contains('selectFundo') ==true){
+      index.style.backgroundColor ='#808080'
+    } else {
+    index.style.backgroundColor = '#aaaaaa'
+    }
+  }
+}
+
+
 ol.addEventListener('click', mudarCorLis)
 
 function riscarTarefa (event) {
@@ -86,3 +103,117 @@ function apagaCompteted(){
 
 let removerFinalizados = document.querySelector('#remover-finalizados')
 removerFinalizados.addEventListener('click', apagaCompteted)
+
+function buttonMoverCima(textButton){
+  let buttonPai =document.querySelector('#moverCimaBaixo')
+  let moverCima = document.createElement('button')
+  let idButton = "mover-cima"
+  moverCima.id = idButton
+  moverCima.innerHTML = textButton
+  buttonPai.appendChild(moverCima)
+}
+
+buttonMoverCima('para cima')
+
+
+
+
+function moverParaCima(){
+  let lis= document.querySelectorAll('li')
+  let temporario
+  let contador = 0
+  for(let index = 1; index <lis.length; index +=1){
+    if (lis[index].classList.contains('selectFundo')== true && lis[index].classList.contains('completed') == true){
+      if (lis[index-1].classList.contains('completed')) {
+        contador += 1
+      }
+      temporario = lis[index].innerHTML
+      lis[index].innerText = lis[index-1].innerText
+      lis[index].style.backgroundColor = '#aaaaaa'
+      lis[index-1].innerHTML = temporario
+      lis[index-1].style.backgroundColor = '#808080'
+      lis[index-1].classList.add('selectFundo')
+      lis[index].classList.remove('selectFundo')
+      if (contador != 0) {
+        lis[index-1].classList.add('completed')
+      } else {
+      lis[index].classList.remove('completed')
+      lis[index-1].classList.add('completed')
+      }
+    }
+    if (lis[index].classList.contains('selectFundo')== true) {
+      if (lis[index-1].classList.contains('completed')) {
+        contador += 1
+      }
+      temporario = lis[index].innerHTML
+      lis[index].innerText = lis[index-1].innerText
+      lis[index].style.backgroundColor = '#aaaaaa'
+      lis[index-1].innerHTML = temporario
+      lis[index-1].style.backgroundColor = '#808080'
+      lis[index].classList.remove('selectFundo')
+      lis[index-1].classList.add('selectFundo')
+      if (contador != 0) {
+        lis[index-1].classList.add('completed')
+      }
+    }
+  }
+}
+
+let moveCima = document.querySelector("#mover-cima")
+moveCima.addEventListener('click', moverParaCima)
+
+function buttonMoverBaixo(textButton){
+  let buttonPai =document.querySelector('#moverCimaBaixo')
+  let moverBaixo = document.createElement('button')
+  let idButton = "mover-baixo"
+  moverBaixo.id = idButton
+  moverBaixo.innerHTML = textButton
+  buttonPai.appendChild(moverBaixo)
+}
+
+buttonMoverBaixo('para baixo')
+
+function moverParaBaixo() {
+  let lis = document.querySelectorAll('li');
+  for (let index = lis.length-2; index>=0; index--) {
+    let temporario
+    let contador = 0
+    if (lis[index].classList.contains('selectFundo')== true && lis[index].classList.contains('completed') == true){
+      if (lis[index+1].classList.contains('completed') == true) {
+        contador += 1
+      }
+      temporario = lis[index].innerHTML
+      lis[index].innerText = lis[index+1].innerText
+      lis[index].style.backgroundColor = '#aaaaaa'
+      lis[index+1].innerHTML = temporario
+      lis[index+1].style.backgroundColor = '#808080'
+      lis[index].classList.remove('selectFundo')
+      lis[index+1].classList.add('selectFundo')
+      if (contador != 0) {
+        lis[index+1].classList.add('completed')
+      } else {
+      lis[index].classList.remove('completed')
+      lis[index+1].classList.add('completed')
+      }
+    }
+    if (lis[index].classList.contains('selectFundo')== true) {
+      if (lis[index+1].classList.contains('completed') == true) {
+        contador += 1
+      }
+      temporario = lis[index].innerHTML
+      lis[index].innerText = lis[index+1].innerText
+      lis[index].style.backgroundColor = '#aaaaaa'
+      lis[index+1].innerHTML = temporario
+      lis[index+1].style.backgroundColor = '#808080'
+      lis[index].classList.remove('selectFundo')
+      lis[index+1].classList.add('selectFundo')
+      if (contador != 0) {
+        lis[index+1].classList.add('completed')
+      }
+    }
+  }
+}
+
+
+let b =document.querySelector('#mover-baixo')
+b.addEventListener('click', moverParaBaixo)
