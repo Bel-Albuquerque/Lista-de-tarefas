@@ -229,10 +229,30 @@ function buttonClearSelected(textButton){
 
 buttonClearSelected('Apagar Selecionado')
 
-function clearSelected(event) {
+function clearSelected() {
   let select = document.querySelector('.selectFundo')
   select.parentNode.removeChild(index)
   ol.style.backgroundColor = '#aaaaaa'
 }
 let buttonSelectClear =document.querySelector('#remover-selecionado')
 buttonSelectClear.addEventListener('click', clearSelected)
+
+function buttonSalvarTarefas(textButton){
+  let buttonPai =document.querySelector('#clearButton')
+  let salvarTarefas = document.createElement('button')
+  let idButton = "salvar-tarefas"
+  salvarTarefas.id = idButton
+  salvarTarefas.innerHTML = textButton
+  buttonPai.appendChild(salvarTarefas)
+}
+
+buttonSalvarTarefas('Salvar Tarefas')
+let salvarTarefas = document.querySelector('#salvar-tarefas')
+
+function saveList(event){
+  localStorage.setItem('ol', ol.innerHTML);
+}
+
+salvarTarefas.addEventListener('click', saveList);
+window.onload = 
+ol.innerHTML = localStorage.getItem('ol');
