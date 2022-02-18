@@ -14,10 +14,6 @@ Projeto desenvolvido no módulo de fundamentos Trybe.
 cd Lista-de-tarefas
 npm install
 ``` 
-## Executando aplicação
-  ```
-npm start
-  ```
 
 ## Requisitos do Projeto **(texto a baixo de autoria da [Trybe](https://github.com/tryber))**:
 
